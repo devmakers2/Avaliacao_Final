@@ -35,6 +35,13 @@ public class Main {
             resultingAverage = calculateArithmeticMean(numbers);
         } else if (optionOfAverage.equals("HARMONICA")) {
             resultingAverage = calculateHarmonicMean(numbers);
+
+            boolean areNumbersValidForHarmonicMean = checkIfNumbersAreValidForHarmonicMean(numbers);
+
+            if (!areNumbersValidForHarmonicMean) {
+                System.out.println("a média harmônica é definida apenas para números positivos.");
+            }
+
         } else {
             System.out.println("oops... isso não deveria acontecer pois a variável já foi conferida");
         }
@@ -81,7 +88,8 @@ public class Main {
     private static double[] getNumbersFromUser(int quantityOfNumbers) {
         double[] numbers = new double[quantityOfNumbers];
 
-        System.out.println("por favor digite os números:");
+        System.out.println("por favor digite os números, lembrando que a média harmônica " +
+                           "só é definida para números positivos:");
 
         Scanner scanner = new Scanner(System.in);
 
@@ -103,6 +111,16 @@ public class Main {
 
     private static boolean checkIfOptionOfAverageIsValid(String optionOfAverage) {
         return optionOfAverage.equals("ARITMETICA") || optionOfAverage.equals("HARMONICA");
+    }
+
+    private static boolean checkIfNumbersAreValidForHarmonicMean(double[] numbers) {
+        for (double number : numbers) {
+            if (number <= 0) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
 
