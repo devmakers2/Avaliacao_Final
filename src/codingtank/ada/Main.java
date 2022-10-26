@@ -20,23 +20,23 @@ public class Main {
 
         double[] numbers = getNumbersFromUser(quantityOfNumbers);
 
-        System.out.println("Qual das médias deve ser calculada?");
-        System.out.println("Digite ARITMETICA para média aritmética");
-        System.out.println("digite HARMONICA para média harmônica");
+        String optionOfAverage = getOptionOfAverageFromUser();
+        boolean isOptionOfAverageValid = checkIfOptionOfAverageIsValid(optionOfAverage);
+        while (!isOptionOfAverageValid) {
+            System.out.println("opção inválida: por favor digite ARITMETICA ou HARMONICA");
 
-        Scanner scanner = new Scanner(System.in);
+            optionOfAverage = getOptionOfAverageFromUser();
 
-        String optionOfAverage = scanner.nextLine();
+            isOptionOfAverageValid = checkIfOptionOfAverageIsValid(optionOfAverage);
+        }
 
         double resultingAverage = 0;
-
         if (optionOfAverage.equals("ARITMETICA")) {
             resultingAverage = calculateArithmeticMean(numbers);
         } else if (optionOfAverage.equals("HARMONICA")) {
             resultingAverage = calculateHarmonicMean(numbers);
         } else {
-            System.out.println("por favor escolha uma opção válida: ARITMETICA ou HARMONICA");
-            // repete
+            System.out.println("oops... isso não deveria acontecer pois a variável já foi conferida");
         }
 
         System.out.println("os números digitados foram: ");
@@ -92,11 +92,18 @@ public class Main {
         return numbers;
     }
 
-//    private static GET OPTION oF AVERAGE FROM USER
+    private static String getOptionOfAverageFromUser() {
+        System.out.println("Qual das médias deve ser calculada?");
+        System.out.println("Digite ARITMETICA para média aritmética");
+        System.out.println("digite HARMONICA para média harmônica");
 
-//    private static boolean checkIfOptionOfAverageIsValid(String optionOfAverage) {
-//        return optionOfAverage.equals("")
-//    }
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextLine();
+    }
+
+    private static boolean checkIfOptionOfAverageIsValid(String optionOfAverage) {
+        return optionOfAverage.equals("ARITMETICA") || optionOfAverage.equals("HARMONICA");
+    }
 
 
     private static double calculateArithmeticMean(double[] numbers) {
