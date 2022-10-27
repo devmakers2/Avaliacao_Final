@@ -8,7 +8,7 @@ public class Main {
         String optionOfAverage = getOptionOfAverageFromUser();
         boolean isOptionOfAverageValid = checkIfOptionOfAverageIsValid(optionOfAverage);
         while (!isOptionOfAverageValid) {
-            System.out.println("opção inválida: por favor digite ARITMETICA ou HARMONICA");
+            System.err.println("opção inválida: por favor digite ARITMETICA ou HARMONICA");
             optionOfAverage = getOptionOfAverageFromUser();
             isOptionOfAverageValid = checkIfOptionOfAverageIsValid(optionOfAverage);
         }
@@ -19,7 +19,7 @@ public class Main {
             boolean isQuantityIsValid = checkIfQuantityIsValid(quantityOfNumbers);
 
             if (!isQuantityIsValid) {
-                System.out.println("a quantidade deve ser maior que zero");  // err?
+                System.out.println("a quantidade deve ser maior que zero");
             } else {
                 break;
             }
@@ -27,15 +27,15 @@ public class Main {
 
         double[] numbers = getNumbersFromUser(quantityOfNumbers);
 
-        /// option of averae era aqui
+        if (optionOfAverage.equals("HARMONICA")) {
+            boolean areNumbersValidForHarmonicMean = checkIfNumbersAreValidForHarmonicMean(numbers);
 
-        boolean areNumbersValidForHarmonicMean = checkIfNumbersAreValidForHarmonicMean(numbers);
-
-        while (!areNumbersValidForHarmonicMean) {
-            System.out.println("a média harmônica é definida apenas para números positivos, " +
-                               "por favor tente novamente");
-            numbers = getNumbersFromUser(quantityOfNumbers);
-            areNumbersValidForHarmonicMean = checkIfNumbersAreValidForHarmonicMean(numbers);
+            while (!areNumbersValidForHarmonicMean) {
+                System.out.println("a média harmônica é definida apenas para números positivos, " +
+                                   "por favor tente novamente");
+                numbers = getNumbersFromUser(quantityOfNumbers);
+                areNumbersValidForHarmonicMean = checkIfNumbersAreValidForHarmonicMean(numbers);
+            }
         }
 
         double resultingAverage = 0;
@@ -43,9 +43,6 @@ public class Main {
             resultingAverage = calculateArithmeticMean(numbers);
         } else if (optionOfAverage.equals("HARMONICA")) {
             resultingAverage = calculateHarmonicMean(numbers);
-
-
-
         } else {
             System.out.println("oops... isso não deveria acontecer pois a variável já foi conferida");
         }
@@ -57,7 +54,6 @@ public class Main {
         System.out.println(numbers[numbers.length - 1]);
 
         System.out.print("a média escolhida foi a média ");
-
         switch (optionOfAverage) {
             case "ARITMETICA":
                 System.out.println("aritmética");
@@ -127,7 +123,6 @@ public class Main {
         return true;
     }
 
-
     private static double calculateArithmeticMean(double[] numbers) {
         double sum = 0;
 
@@ -139,7 +134,7 @@ public class Main {
     }
 
     private static double calculateHarmonicMean(double[] numbers) {
-        double sumOfReciprocals = 0;  // ver para ZERO
+        double sumOfReciprocals = 0;
 
         for (double number : numbers) {
             sumOfReciprocals += 1/number;
