@@ -5,8 +5,15 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        int quantityOfNumbers = 0;
+        String optionOfAverage = getOptionOfAverageFromUser();
+        boolean isOptionOfAverageValid = checkIfOptionOfAverageIsValid(optionOfAverage);
+        while (!isOptionOfAverageValid) {
+            System.out.println("opção inválida: por favor digite ARITMETICA ou HARMONICA");
+            optionOfAverage = getOptionOfAverageFromUser();
+            isOptionOfAverageValid = checkIfOptionOfAverageIsValid(optionOfAverage);
+        }
 
+        int quantityOfNumbers = 0;
         while (true) {
             quantityOfNumbers = getQuantityOfNumbers();
             boolean isQuantityIsValid = checkIfQuantityIsValid(quantityOfNumbers);
@@ -20,14 +27,15 @@ public class Main {
 
         double[] numbers = getNumbersFromUser(quantityOfNumbers);
 
-        String optionOfAverage = getOptionOfAverageFromUser();
-        boolean isOptionOfAverageValid = checkIfOptionOfAverageIsValid(optionOfAverage);
-        while (!isOptionOfAverageValid) {
-            System.out.println("opção inválida: por favor digite ARITMETICA ou HARMONICA");
+        /// option of averae era aqui
 
-            optionOfAverage = getOptionOfAverageFromUser();
+        boolean areNumbersValidForHarmonicMean = checkIfNumbersAreValidForHarmonicMean(numbers);
 
-            isOptionOfAverageValid = checkIfOptionOfAverageIsValid(optionOfAverage);
+        while (!areNumbersValidForHarmonicMean) {
+            System.out.println("a média harmônica é definida apenas para números positivos, " +
+                               "por favor tente novamente");
+            numbers = getNumbersFromUser(quantityOfNumbers);
+            areNumbersValidForHarmonicMean = checkIfNumbersAreValidForHarmonicMean(numbers);
         }
 
         double resultingAverage = 0;
@@ -36,11 +44,7 @@ public class Main {
         } else if (optionOfAverage.equals("HARMONICA")) {
             resultingAverage = calculateHarmonicMean(numbers);
 
-            boolean areNumbersValidForHarmonicMean = checkIfNumbersAreValidForHarmonicMean(numbers);
 
-            if (!areNumbersValidForHarmonicMean) {
-                System.out.println("a média harmônica é definida apenas para números positivos.");
-            }
 
         } else {
             System.out.println("oops... isso não deveria acontecer pois a variável já foi conferida");
