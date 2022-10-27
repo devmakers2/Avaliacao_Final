@@ -82,7 +82,7 @@ public class Main {
 
     private static String getOptionOfAverageFromUser() {
         System.out.println("Qual das médias deve ser calculada?");
-        System.out.println("Digite ARITMETICA para média aritmética");
+        System.out.println("digite ARITMETICA para média aritmética");
         System.out.println("digite HARMONICA para média harmônica");
 
         Scanner scanner = new Scanner(System.in);
