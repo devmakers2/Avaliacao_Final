@@ -51,7 +51,7 @@ public class Main {
             Scanner scanner = new Scanner(System.in);
             return scanner.nextInt();
         } catch (InputMismatchException e) {
-            System.out.println("dado de entrada inválido, por favor tente novamente");  // err?
+            System.out.println("dado de entrada inválido, por favor tente novamente");
             return getQuantityOfNumbers();
         }
     }
@@ -73,7 +73,7 @@ public class Main {
                 numbers[i] = scanner.nextDouble();
             }
         } catch (InputMismatchException e) {
-            System.err.println("dado de entrada inválido, por favor tente novamente");
+            System.out.println("dado de entrada inválido, por favor tente novamente");
             numbers = getNumbersFromUser(quantityOfNumbers);
         }
 
