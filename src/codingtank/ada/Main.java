@@ -68,8 +68,13 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
 
-        for (int i = 0; i < numbers.length; i++) {
-            numbers[i] = scanner.nextDouble();
+        try {
+            for (int i = 0; i < numbers.length; i++) {
+                numbers[i] = scanner.nextDouble();
+            }
+        } catch (InputMismatchException e) {
+            System.err.println("dado de entrada inválido, por favor tente novamente");
+            numbers = getNumbersFromUser(quantityOfNumbers);
         }
 
         return numbers;
