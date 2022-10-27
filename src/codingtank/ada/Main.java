@@ -38,35 +38,10 @@ public class Main {
             }
         }
 
-        double resultingAverage = 0;
-        if (optionOfAverage.equals("ARITMETICA")) {
-            resultingAverage = calculateArithmeticMean(numbers);
-        } else if (optionOfAverage.equals("HARMONICA")) {
-            resultingAverage = calculateHarmonicMean(numbers);
-        } else {
-            System.out.println("oops... isso não deveria acontecer pois a variável já foi conferida");
-        }
+        double resultingAverage =
+                optionOfAverage.equals("ARITMETICA") ? calculateArithmeticMean(numbers) : calculateHarmonicMean(numbers);
 
-        System.out.println("os números digitados foram: ");
-        for (int i = 0; i < numbers.length - 1; i++) {
-            System.out.print(numbers[i] + " - ");
-        }
-        System.out.println(numbers[numbers.length - 1]);
-
-        System.out.print("a média escolhida foi a média ");
-        switch (optionOfAverage) {
-            case "ARITMETICA":
-                System.out.println("aritmética");
-                break;
-            case "HARMONICA":
-                System.out.println("harmônica");
-                break;
-            default:
-                System.out.println("Hum... isso não deveria acontecer. Contate o administrador do sistema.");
-                return;
-        }
-
-        System.out.print("e a média resultante foi: " + resultingAverage);
+        printResults(numbers, optionOfAverage, resultingAverage);
     }
 
     private static int getQuantityOfNumbers() {
@@ -141,5 +116,28 @@ public class Main {
         }
 
         return numbers.length/sumOfReciprocals;
+    }
+
+    private static void printResults(double[] numbers, String optionOfAverage, double resultingAverage) {
+        System.out.println("os números digitados foram: ");
+        for (int i = 0; i < numbers.length - 1; i++) {
+            System.out.print(numbers[i] + " - ");
+        }
+        System.out.println(numbers[numbers.length - 1]);
+
+        System.out.print("a média escolhida foi a média ");
+        switch (optionOfAverage) {
+            case "ARITMETICA":
+                System.out.println("aritmética");
+                break;
+            case "HARMONICA":
+                System.out.println("harmônica");
+                break;
+            default:
+                System.out.println("Hum... isso não deveria acontecer. Contate o administrador do sistema.");
+                return;
+        }
+
+        System.out.print("e a média resultante foi: " + resultingAverage);
     }
 }
